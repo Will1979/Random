@@ -34,7 +34,7 @@ public class PrimeRandomizer implements Runnable {
         boolean find = true;
         while(find){
           rand = random.nextInt(1000);  
-          if(rand > 2)//make sure we eliminate 1, the number itself and negative numbers
+          if(rand > 1)//make sure we eliminate 1 and negative numbers
               break;
           else
            find = true;   
