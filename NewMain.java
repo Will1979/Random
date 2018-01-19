@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package williamWasher;
 
 import java.text.NumberFormat;
@@ -14,7 +9,7 @@ import java.util.Scanner;
  */
 public class NewMain {
   public volatile int counter = 0;
-  public volatile long[] separatedDigits;
+  public volatile long[] separatedDigits = new long[counter + 1];
    public NewMain()
    {
        
@@ -65,18 +60,25 @@ public class NewMain {
              System.out.println(num + " is not a palindrome ");
              nm.separatedDigits[nm.counter] = 0;
              return nm.separatedDigits;
-         }// found the two digit palindrome return from the method.   
+         }   
          
       }
         
        
-       if(num > powersOfTen[j] & num< powersOfTen[j + 1] || num < powersOfTen[j]){
+       if(num > powersOfTen[j] & num< powersOfTen[j + 1]){
           //System.out.println(doFormat(num) + " is greater than " + doFormat(powersOfTen[j]) + " but less than " + doFormat(powersOfTen[j+1]));
           long findFirst = num/powersOfTen[j];/*this simple division gets a whole number by leaving the remainder e.g. 1234/1000 = 1.234 , 
                                               //but as a long data type the decimal is dropped and then the number can be broken up into individual digits.*/
           System.out.println("findfirst = " + findFirst + "is the counter 0 at first " + nm.counter);
           long findNext = num - (findFirst * powersOfTen[j]);
-          nm.separatedDigits = new long[nm.counter + 1]; 
+          nm.separatedDigits[nm.counter] = findFirst;
+          long[] temp = new long[nm.counter + 1];
+          temp[nm.counter] = findFirst;
+          //System.out.println(nm.counter + 1 + " counter + 1 " + temp.length + " should be 2");
+          nm.separatedDigits = new long[nm.counter + 1];
+          nm.separatedDigits[nm.counter] = temp[nm.counter];
+          
+         
           
           
          System.out.println( "the length of the array " + nm.separatedDigits.length);
@@ -89,20 +91,26 @@ public class NewMain {
           else if(findNext < 10){
               System.out.println(findNext + " find next");
               breakApart(findNext,nm.counter++,nm);
-//              long[] newSeparatedDigits = new long[nm.counter];
-//              for(int x = 0; x < nm.separatedDigits.length;x++)
-//              {
-//                  newSeparatedDigits[x] = nm.separatedDigits[x];
-//                  System.out.println(newSeparatedDigits[x]);
-//              }
-//              newSeparatedDigits[newSeparatedDigits.length] = findNext;
-//              nm.separatedDigits = new long[newSeparatedDigits.length];
-//              nm.separatedDigits = newSeparatedDigits;
+              long[] newSeparatedDigits = new long[nm.counter + 1];
+              for(int x = 0; x < nm.separatedDigits.length;x++)
+              {
+                  newSeparatedDigits[x] = nm.separatedDigits[x];
+                  System.out.println(nm.separatedDigits[x] + " last call ");
+              }
+              newSeparatedDigits[nm.separatedDigits.length - 1] = findNext;
+              nm.separatedDigits = new long[newSeparatedDigits.length];
+              nm.separatedDigits = newSeparatedDigits;
               break;
           }
       }
       
   }//end main foor loop
        return nm.separatedDigits;
+   }
+   
+   private long[] adjustArray(long[] l, int count){
+    
+       
+       return l;
    }
 }
